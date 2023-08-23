@@ -11,11 +11,11 @@ Guia de como ajustar sua aplicação para o deploy dentro do Microsoft Azure
 Para começarmos, iremos fazer os ajustes necessários dentro do Microsoft Azure com sua conta. Para isso, acesse o link abaixo e **logue com sua conta do Insper no portal**. <br> https://portal.azure.com/#home
 
 ### 1.b: Criando o Web App:
-Após acessar o portal da Azure, procure pela opção **Create a Resource**, e dentro desta opção, pesquise pela opção **Web App + Database**
+Após acessar o portal da Azure, procure pela opção **Create a Resource**, e dentro desta opção, pesquise pela opção **Web App + Database**:
 
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/a04840f5-774f-46ef-b0ea-d5331ac8180b)
 
-Em seguida iremos configurar o Web App com as informações abaixo
+Em seguida iremos configurar o Web App com as informações abaixo:
 
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/08b440c3-0c24-4131-86a2-47f5f634f0a0)
 
@@ -54,7 +54,9 @@ Para acessar, procura no painel esquerdo, na área de **Settings**, pela opção
 
 Provavelmente você terá apenas uma Application Setting criada no seu painel, como nome de **AZURE_POSTGRESQL_CONNECTIONSTRING**. Esta configuração possui uma string contendo todas as informações necessárias para a aplicação conectar à base de dados do Azure, que será enviada para a aplicação como uma **Variável de Ambiente**. Porém, tratar esta string dentro do Django pode ser um tanto chato, então iremos por um caminho diferente, criando diversas Variáveis Ambiente para cada dado que precisamos utilizar na nossa configuração.
 
-Agora, o que devemos fazer, é selecionar a opção **Advanced Edit**, que nos irá apresentar um arquivo JSON para modificar. Copie o código abaixo no seu JSON após a parte da Connection String existente:(**Não apague sua Connection String ainda, iremos utilizar informações dela primeiro**)
+Agora, o que devemos fazer, é selecionar a opção **Advanced Edit**, que nos irá apresentar um arquivo JSON para modificar. Copie o código abaixo no seu JSON após a parte da Connection String existente:
+
+⚠️ **Não apague sua Connection String ainda, iremos utilizar informações dela primeiro**
 
 ```
 ,
@@ -106,7 +108,7 @@ Agora, o que devemos fazer, é selecionar a opção **Advanced Edit**, que nos i
 ```
 Após copiar o código acima, você irá substituir os campos temporários `<exemplo>` pelas informações dentro da Connection String já criada pelo Azure. Depois deste passo, clique em **Ok** e, em seguida, clique em **Save** no topo da tela de Application Settings para finalizar a edição. Você deverá ter todas as variáveis de ambiente agora como a imagem acima estava mostrando.
 
-**Obs: o link do seu App se encontra na parte de *Overview* da página**
+**Obs: o link do seu App se encontra na parte de *Overview* da página**.
 
 ## Passo 2: Ajustando a Aplicação
 
@@ -170,6 +172,6 @@ gunicorn==20.1.0
 psycopg2-binary==2.9.5
 ```
 
-Pronto, agora estamos prontos para o último passo: Realizar o Deploy da nossa aplicação para o Web App!
+Pronto, agora vamos ao último passo: Realizar o Deploy da nossa aplicação para o Web App!
 
 ## Passo 3: Deploy da Aplicação
