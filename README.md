@@ -176,14 +176,17 @@ Pronto, agora vamos ao último passo: Realizar o Deploy da nossa aplicação par
 
 ## Passo 3: Deploy da Aplicação
 Voltando para o Azure, iremos agora para a seção **Deployment Center** do App Service. Iremos configurar o deployment para pegar os arquivos da aplicação no GitHub. Temos aqui duas opções possíveis. Caso seu código esteja em um repositório que pertence a sua conta, Selecione no campo Source a opção ***GitHub***, e acesse com sua conta conforme for guiado:
+
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/7547af3a-2c6d-42ff-9193-6c30b658aec2)
 
 Em seguida, preencha os campos abaixo com o caminho onde seu repositório está salvo, e clique em **Save** no topo da tela para confirmar sua conexão.
+
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/deecdf43-d954-4155-a1c1-87e9a491f1b5)
 
 Agora, caso você esteja em um repositório externo, utilize a opção ***External Git*** e, seguida, preencha os campos abaixo com as informações do repositório que irá utilizar. 
 ⚠️ **Este repositório deve estar como público no GitHub para poder ser utilizado sem Autenticação do dono**
 Por fim, salve suas informações com o botão no topo da tela.
+
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/c871a6bd-664c-482f-ba43-23dd63a5ca0c)
 
 Agora que sua conexão está configurada, basta esperar o deployment concluir, o que pode levar alguns minutos, e então pode testar sua conexão através do link do seu Web App em ***Overview***.
