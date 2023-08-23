@@ -187,7 +187,7 @@ Agora, caso você esteja em um repositório externo, utilize a opção ***Extern
 ⚠️ **Este repositório deve estar como público no GitHub para poder ser utilizado sem Autenticação do dono**
 Por fim, salve suas informações com o botão no topo da tela.
 
-![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/c871a6bd-664c-482f-ba43-23dd63a5ca0c)
+![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/e2533271-bf54-4cb9-b66f-9a960dfdf301)
 
 Agora que sua conexão está configurada, basta esperar o deployment concluir, o que pode levar alguns minutos, e então pode testar sua conexão através do link do seu Web App em ***Overview***.
 
