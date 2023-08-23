@@ -185,7 +185,7 @@ Em seguida, preencha os campos abaixo com o caminho onde seu repositório está 
 
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/deecdf43-d954-4155-a1c1-87e9a491f1b5)
 
-Agora, caso você esteja em um repositório externo, utilize a opção ***External Git*** e, seguida, preencha os campos abaixo com as informações do repositório que irá utilizar. 
+Agora, caso você esteja em um repositório externo, utilize a opção ***External Git*** e, em seguida, preencha os campos abaixo com as informações do repositório que irá utilizar. 
 
 ⚠️ **Este repositório deve estar como público no GitHub para poder ser utilizado sem Autenticação do dono**
 
