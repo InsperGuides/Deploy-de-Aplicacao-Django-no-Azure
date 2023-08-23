@@ -12,11 +12,12 @@ Para começarmos, iremos fazer os ajustes necessários dentro do Microsoft Azure
 
 ### 1.b: Criando o Web App:
 Após acessar o portal da Azure, procure pela opção **Create a Resource**, e dentro desta opção, pesquise pela opção **Web App + Database**
+
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/a04840f5-774f-46ef-b0ea-d5331ac8180b)
 
 Em seguida iremos configurar o Web App com as informações abaixo
-![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/08b440c3-0c24-4131-86a2-47f5f634f0a0)
 
+![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/08b440c3-0c24-4131-86a2-47f5f634f0a0)
 
 **1 - Subscription: Selecione sua assinatura **Azure for Students**;**
 
@@ -39,6 +40,7 @@ Em seguida iremos configurar o Web App com as informações abaixo
 Após ajustar todas as configurações, clique no botão **Review + Create**, e após confirmar que todos os dados estão corretos, clique em **Create** para finalizar a configuração. Em seguida, o Azure irá iniciar o deploy da sua aplicação, e este processo pode levar vários minutos para ser finalizado.
 
 Quando o processo de Deploy concluir, você tera um novo Resource Group no seu Azure similar como o abaixo. Para os próximos passos, iremos trabalhar dentro do **App Service** dentro deste grupo.
+
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/0244be5f-f630-489e-b129-33d82c789ea9)
 
 
@@ -47,6 +49,7 @@ Quando o processo de Deploy concluir, você tera um novo Resource Group no seu A
 Agora que temos nosso Web App criado dentro do Azure, precisamos configurar algumas partes dele para que o nosso projeto Django funcione corretamente. Primeiro, vamos configurar as **Application Settings** para podermos conectar o banco de dados do PostgreSQL ao projeto, assim como fizemos com os containers anteriormente.
 
 Para acessar, procura no painel esquerdo, na área de **Settings**, pela opção **Configuration**. Você deverá encontrar uma tela similar a abaixo:
+
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/a9d0e81e-9d67-4218-b2e3-d108a60c63f0)
 
 Provavelmente você terá apenas uma Application Setting criada no seu painel, como nome de **AZURE_POSTGRESQL_CONNECTIONSTRING**. Esta configuração possui uma string contendo todas as informações necessárias para a aplicação conectar à base de dados do Azure. Porém, tratar esta string dentro do Django pode ser um tanto chato, então iremos por um caminho diferente, criando diversas Applications Settings, uma para cada dado que precisaremos dentro do nosso arquivo *settings.py* da aplicação(iremos configurar isto futuramente neste guia).
