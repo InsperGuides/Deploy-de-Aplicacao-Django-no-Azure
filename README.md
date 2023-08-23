@@ -161,7 +161,7 @@ DATABASES = {
 }
 ```
 
-Muito Bem, o `settings.py` está ajustado. Porém, como podem ter notado, estamos utilizando uma nova biblioteca chamada `dotenv`. Esta biblioteca é responsável em carregar as variáveis ambiente na nossa aplicação, então devemos adicionar a mesma no nosso arquivo `requirements.txt`:
+Muito Bem, o `settings.py` está ajustado. Porém, como podem ter notado, estamos utilizando uma nova biblioteca chamada `dotenv`. Esta biblioteca é responsável em carregar as variáveis ambiente na nossa aplicação, então devemos adicionar a mesma no arquivo `requirements.txt`:
 
 ```
 python-dotenv==1.0.0
