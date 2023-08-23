@@ -52,7 +52,7 @@ Para acessar, procura no painel esquerdo, na área de **Settings**, pela opção
 
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/a9d0e81e-9d67-4218-b2e3-d108a60c63f0)
 
-Provavelmente você terá apenas uma Application Setting criada no seu painel, como nome de **AZURE_POSTGRESQL_CONNECTIONSTRING**. Esta configuração possui uma string contendo todas as informações necessárias para a aplicação conectar à base de dados do Azure. Porém, tratar esta string dentro do Django pode ser um tanto chato, então iremos por um caminho diferente, criando diversas Applications Settings, uma para cada dado que precisaremos dentro do nosso arquivo *settings.py* da aplicação(iremos configurar isto futuramente neste guia).
+Provavelmente você terá apenas uma Application Setting criada no seu painel, como nome de **AZURE_POSTGRESQL_CONNECTIONSTRING**. Esta configuração possui uma string contendo todas as informações necessárias para a aplicação conectar à base de dados do Azure, que será enviada para a aplicação como uma **Variável de Ambiente**. Porém, tratar esta string dentro do Django pode ser um tanto chato, então iremos por um caminho diferente, criando diversas Variáveis Ambiente para cada dado que precisamos utilizar na nossa configuração.
 
 Agora, o que devemos fazer, é selecionar a opção **Advanced Edit**, que nos irá apresentar um arquivo JSON para modificar. Copie o código abaixo no seu JSON após a parte da Connection String existente:(**Não apague sua Connection String ainda, iremos utilizar informações dela primeiro**)
 
@@ -107,3 +107,69 @@ Agora, o que devemos fazer, é selecionar a opção **Advanced Edit**, que nos i
 Após copiar o código acima, você irá substituir os campos temporários `<exemplo>` pelas informações dentro da Connection String já criada pelo Azure. Depois deste passo, clique em **Ok** e, em seguida, clique em **Save** no topo da tela de Application Settings para finalizar a edição. Você deverá ter todas as variáveis de ambiente agora como a imagem acima estava mostrando.
 
 **Obs: o link do seu App se encontra na parte de *Overview* da página**
+
+## Passo 2: Ajustando a Aplicação
+
+Agora que temos nossas variáveis ambiente criadas, temos que ajustar o `settings.py` da aplicação para poder se conectar à base de dados online do Azure. Como dito anteriormente, ***é recomendado você ajustar esta parte em um repositório isolado do github da sua aplicação, para não impactar seu ambiente de produção.***
+
+Abra seu `settings.py`, e substitua o topo do código, abaixo do `import dj_database_url` pelo abaixo:
+```
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
+```
+Em seguida, abaixo da região adicionada, iremos definir as variáveis de ambiente que ajustamos no Azure para nossa aplicação reconhecer. Utilize o código abaixo:
+```
+# core/settings.py
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(' ')
+
+SECURE_SSL_REDIRECT = \
+    os.getenv('SECURE_SSL_REDIRECT', '0').lower() in ['true', 't', '1']
+if SECURE_SSL_REDIRECT:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+```
+
+Por fim, iremos agora ajustar nossa conexão à base de dados com nossas variáveis criadas. Encontre a parte de **DATABASES**, e troque pelo código abaixo:
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DBNAME'),
+        'HOST': os.environ.get('DBHOST'),
+        'USER': os.environ.get('DBUSER'),
+        'PASSWORD': os.environ.get('DBPASS'),
+        'OPTIONS': {'sslmode': 'require'},
+    }
+}
+```
+
+Muito Bem, agora nosso settings está ajustado. Porém, como podem ter notado, estamos utilizando uma nova biblioteca chamada `dotenv`. Esta biblioteca é responsável em carregar as variáveis ambiente na nossa aplicação, então devemos adicionar a mesma no nosso arquivo `requirements.txt`:
+
+```
+python-dotenv==1.0.0
+```
+
+Além disso, confirme se as bilbiotecas `gunicorn` e `psycopg-2-binary` também ja estão adicionadas:
+
+```
+gunicorn==20.1.0
+psycopg2-binary==2.9.5
+```
+
+Pronto, agora estamos prontos para o último passo: Realizar o Deploy da nossa aplicação para o Web App!
+
+## Passo 3: Deploy da Aplicação
