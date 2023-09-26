@@ -52,7 +52,7 @@ Para acessar, procura no painel esquerdo, na área de **Settings**, pela opção
 
 ![image](https://github.com/InsperGuides/Deploy-de-Aplicacao-Django-no-Azure/assets/18387737/a9d0e81e-9d67-4218-b2e3-d108a60c63f0)
 
-Provavelmente você terá apenas uma Application Setting criada no seu painel, como nome de **AZURE_POSTGRESQL_CONNECTIONSTRING**. Esta configuração possui uma string contendo todas as informações necessárias para a aplicação conectar à base de dados do Azure, que será enviada para a aplicação como uma **Variável de Ambiente**.
+Provavelmente você terá apenas uma Application Setting criada no seu painel, com o nome de **AZURE_POSTGRESQL_CONNECTIONSTRING**. Esta configuração possui uma string contendo todas as informações necessárias para a aplicação conectar à base de dados do Azure, que será enviada para a aplicação como uma **Variável de Ambiente**.
 
 Porém, tratar esta string dentro do Django pode ser um tanto chato, então iremos por um caminho diferente, criando diversas Variáveis Ambiente para cada dado que precisamos utilizar na nossa configuração.
 
