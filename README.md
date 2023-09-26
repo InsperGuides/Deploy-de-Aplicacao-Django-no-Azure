@@ -46,7 +46,7 @@ Quando o processo de Deploy concluir, você tera um novo Resource Group no seu A
 
 ### 1.c: Configurando o App Service
 
-Agora que temos nosso Web App criado dentro do Azure, precisamos configurar algumas partes dele para que o nosso projeto Django funcione corretamente. Primeiro, vamos configurar as **Application Settings** para podermos conectar o banco de dados do PostgreSQL ao projeto, assim como fizemos com os containers anteriormente.
+Agora que temos nosso Web App criado dentro do Azure, precisamos configurar algumas partes dele para que o nosso projeto funcione corretamente. Primeiro, vamos configurar as **Application Settings** para podermos conectar o banco de dados do PostgreSQL ao projeto, assim como fizemos com os containers anteriormente.
 
 Para acessar, procura no painel esquerdo, na área de **Settings**, pela opção **Configuration**. Você deverá encontrar uma tela similar a abaixo:
 
